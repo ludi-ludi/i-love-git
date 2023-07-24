@@ -1,7 +1,7 @@
 FROM httpd
 LABEL maintainer="ektech"
 ARG port=80
-USER root
+USER ludivine
 RUN apt -y update 
 WORKDIR /usr/local/apache2/htdocs/
 
