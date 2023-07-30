@@ -1,0 +1,314 @@
+
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: db-postgres
+spec:
+  capacity:
+    storage: 2Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: db-postgres
+  hostPath:
+    path: /path/to/pv/data
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: db-postgres
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: db-postgres
+  resources:
+    requests:
+      storage: 1Gi
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: db-postgres
+spec:
+  selector:
+    app: db-postgres
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 5432
+
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: db-postgres
+spec:
+  serviceName: db-postgres
+  replicas: 1
+  selector:
+    matchLabels:
+      app: db-postgres
+      apps: thunderapp
+  template:
+    metadata:
+      labels:
+        app: db-postgres
+        apps: thunderapp
+    spec:
+      serviceAccountName: thunderstorm
+      containers:
+        - name: db-postgres
+          image: postgres
+          ports:
+            - containerPort: 5432
+          env:
+            - name: POSTGRES_USER
+              value: john
+            - name: POSTGRES_PASSWORD
+              value: example
+            - name: POSTGRES_DB
+              value: endgame
+            - name: DB_HOST
+              value: db
+          volumeMounts:
+            - name: db-postgres
+              mountPath: /var/lib/postgresql/data-data0
+  volumeClaimTemplates:
+    - metadata:
+        name: db-postgres
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        storageClassName: thunderapp
+        resources:
+          requests:
+            storage: 1Gi
+
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: thunderapp
+provisioner: dobs.csi.digitalocean.com
+volumeBindingMode: Immediate
+
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: thunderstorm
+  namespace: s5ludivine
+
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: redis
+spec:
+  capacity:
+    storage: 2Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: thunderapp
+  hostPath:
+    path: /path/to/pv/data
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: redis
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: thunderapp
+
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: redis
+spec:
+  serviceName: redis
+  replicas: 3
+  selector:
+    matchLabels:
+      app: redis
+  template:
+    metadata:
+      labels:
+        app: redis
+    spec:
+      containers:
+        - name: redis
+          image: redis:latest
+          ports:
+            - containerPort: 6379
+          volumeMounts:
+            - name: redis
+              mountPath: /data
+  volumeClaimTemplates:
+    - metadata:
+        name: redis
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 1Gi
+        storageClassName: thunderapp
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis
+spec:
+  selector:
+    app: redis
+  ports:
+    - protocol: TCP
+      port: 6379
+      targetPort: 6379
+
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: api
+spec:
+  capacity:
+    storage: 2Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: thunderapp
+  hostPath:
+    path: /path/to/pv/data
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: api
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: thunderapp
+  resources:
+    requests:
+      storage: 1Gi
+
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api
+      apps: thunderapp
+  serviceName: api
+  template:
+    metadata:
+      labels:
+        app: api
+        apps: thunderapp
+    spec:
+      containers:
+        - name: api
+          image: devopseasylearning/s5ludivine:thunder-backend
+          ports:
+            - containerPort: 5000
+            - containerPort: 8080
+          env:
+            - name: DB
+              value: endgame
+            - name: DB_HOST
+              value: db-postgres
+            - name: DB_PASS
+              value: example
+            - name: DB_USER
+              value: john
+          imagePullPolicy: Always
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: api
+spec:
+  selector:
+    app: api
+  ports:
+    - name: api-port1
+      protocol: TCP
+      port: 5000
+      targetPort: 5000
+    - name: api-port2
+      protocol: TCP
+      port: 8080
+      targetPort: 8080
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+      apps: thunderapp
+  template:
+    metadata:
+      labels:
+        app: frontend
+        apps: thunderapp
+    spec:
+      containers:
+        - name: frontend
+          image: devopseasylearning/s5ludivine:thunder-frontend
+          ports:
+            - containerPort: 5000
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 5000
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 5000
+            initialDelaySeconds: 5
+            periodSeconds: 10
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-service
+spec:
+  type: NodePort
+  selector:
+    app: frontend
+  ports:
+    - protocol: TCP
+      port: 5000
+      targetPort: 5000
+
+
+# psql -h <host> -p <port> -U <username> -d <database>

@@ -1,0 +1,92 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+      apps: dbapp
+  template:
+    metadata:
+      labels:
+        app: frontend
+        apps: dbapp
+    spec:
+      containers:
+        - name: frontend
+          image: fridade/fritz:dbfront_end
+          ports:
+            - containerPort: 27017
+          env:
+            - name: ME_CONFIG_MONGODB_ADMINUSERNAME
+              value: fritz
+            - name: ME_CONFIG_MONGODB_ADMINPASSWORD
+              value: damien
+            - name: ME_CONFIG_MONGODB_SERVER
+              value: DB name
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 27017
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 27017
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          command:
+            - "/bin/sh"
+            - "-c"
+            - |
+              npm install mongodb
+              node -e "
+              const MongoClient = require('mongodb').MongoClient;
+
+              // Connection URL
+              const url = 'mongodb://fritz:damien@DB name:27017/';
+
+              // Database Name
+              const dbName = 'mongodb';
+
+              // Create a new MongoClient
+              const client = new MongoClient(url, { useUnifiedTopology: true });
+
+              // Connect to the MongoDB server
+              client.connect(function(err) {
+                if (err) {
+                  console.error('Error connecting to MongoDB:', err);
+                  return;
+                }
+
+                console.log('Connected successfully to MongoDB');
+
+                const db = client.db(dbName);
+
+                // Perform database operations
+
+                // Close the client connection
+                client.close();
+              });
+              "
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend
+spec:
+  type: NodePort
+  selector:
+    app: frontend
+    apps: dbapp
+  ports:
+    - protocol: TCP
+      port: 5000
+      targetPort: 27017
+

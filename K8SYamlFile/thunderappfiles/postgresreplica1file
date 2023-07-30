@@ -1,0 +1,93 @@
+
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: thunderstorm
+  namespace: s5ludivine
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name:  db-postgres01
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: db-postgres01
+  resources:
+    requests:
+      storage: 1Gi
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: db-postgres01
+spec:
+  selector:
+    app: db-postgres01
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: db-postgres01
+spec:
+  serviceName: db-postgres01
+  replicas: 1
+  selector:
+    matchLabels:
+      app: db-postgres01
+  template:
+    metadata:
+      labels:
+        app:  db-postgres01
+    spec:
+      serviceAccountName: thunderstorm
+      containers:
+        - name:  db-postgres01
+
+          image: postgres
+          ports:
+            - containerPort: 5432
+          env:
+            - name: POSTGRES_PASSWORD
+              value: your_password_here
+          volumeMounts:
+            - name:  db-postgres01
+
+              data: null
+              mountPath: /var/lib/postgresql/data-data1
+  volumeClaimTemplates:
+    - metadata:
+        name:  db-postgres01
+
+        data: null
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        storageClassName:  db-postgres01
+
+        resources:
+          requests:
+            storage: 1Gi
+
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name:  db-postgres01
+provisioner: dobs.csi.digitalocean.com
+volumeBindingMode: WaitForFirstConsumer
+
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: thunderstorm
+  namespace: s5ludivine

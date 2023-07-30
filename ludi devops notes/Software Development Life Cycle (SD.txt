@@ -1,0 +1,10 @@
+ Software Development Life Cycle (SDLC) is a process that guide the creation, maintenance, and support of software applications.
+
+plan: is when the agile team with the requirement of the client is going to plan what is going to be done how and how long.
+coding: is the phase where the developers write the code of the application.
+build: is a sotfware use to build the code such as maven
+testing: after building the code, we test them to identify and fix issues. 
+release: this phase represents the transition from development to actual usage by end-users.
+deploy: is the phase where we package our application with all dependencies in a containerize environment (docker)
+operator: we manage the deployment, the system Health Monitoring, including servers, databases, network connectivity. using tool such as k8s. 
+monitor: it used to keep an eye on the software's performance metrics, such as response time, resource utilization 
