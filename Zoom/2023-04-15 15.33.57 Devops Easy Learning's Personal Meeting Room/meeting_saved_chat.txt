@@ -1,0 +1,90 @@
+13:39:15 From  s5bakare  to  Everyone:
+	Does anyone have the link to the google sheet?
+13:40:03 From  s5clovis  to  Everyone:
+	Replying to "Does anyone have the..."
+	
+	https://docs.google.com/spreadsheets/d/1oH7CsqZl8tGOdQof50eAVLGCDvkgJ97bam-1SiZZruk/edit?usp=sharing
+13:40:12 From  s5bakare  to  Everyone:
+	Replying to "Does anyone have the..."
+	
+	Thank you.
+13:40:22 From  s5clovis  to  Everyone:
+	Replying to "Does anyone have the..."
+	
+	you are welcome
+13:52:56 From  Devops Easy Learning  to  Everyone:
+	http://server3.anomicatech.com:8081
+13:56:32 From  Devops Easy Learning  to  Everyone:
+	https://www.youtube.com/watch?v=L3zp347cWNw&t=835s
+14:05:26 From  Devops Easy Learning  to  Everyone:
+	project one is done 
+	discuss aboutt he following 
+	1- what did you learn about this project 
+	2- how impactful is this project to your DevOps life
+	3- what are important keywords you heard the first time on this project
+	4- did you do your personal research on those keywords 
+	5- how confident are you with this project, do you beleive 
+	this project is an offer letter 
+	6- how confident will you be explaining this in front of recruters or 
+	at the interview 
+	7- is there any advice for the instructor or your teammates
+	8- what are the suggestions for the next project coming down the line
+14:10:14 From  S5Silva  to  Everyone:
+	project one is done 	discuss aboutt he following 	1- what did you learn about this project 	2- how impactful is this project to your DevOps life	3- what are important keywords you heard the first time on this project	4- did you do your personal research on those keywords 	5- how confident are you with this project, do you beleive 	this project is an offer letter 	6- how confident will you be explaining this in front of recruters or 	at the interview 	7- is there any advice for the instructor or your teammates	8- what are the suggestions for the next project coming down the line
+14:18:48 From  Devops Easy Learning  to  Everyone:
+	https://take.quiz-maker.com/QM3HQFOJB
+14:38:28 From  s5btan | Jaq  to  Everyone:
+	Thank you DevopsEasyLearning!
+14:48:12 From  Devops Easy Learning  to  Everyone:
+	https://take.quiz-maker.com/QM3HQFOJB
+14:59:44 From  Devops Easy Learning  to  Everyone:
+	https://take.quiz-maker.com/QM3HQFOJB
+15:02:04 From  Devops Easy Learning  to  Everyone:
+	present yourself 
+	tell me about a project your work on 
+	issue encounter on that project 
+	what did you learn about that project
+15:03:03 From  s5jerry  to  Everyone:
+	what salary range are you expecting for this position
+15:03:13 From  s5wendji  to  Everyone:
+	what was your motivations to transit from mechanic to Devops?
+15:03:43 From  s5rolande  to  Everyone:
+	during an interview are we supposed to share our screen with the interviewer to show him our projects?
+15:04:40 From  s5jerry  to  Everyone:
+	how do you resolve conflicts between your team members?
+15:05:11 From  s5tgi  to  Everyone:
+	the interview will limit to what we learned so far?
+15:05:38 From  s5rodrigue  to  Everyone:
+	can you explain the main difference between Docker-compose  and Docker swarm
+15:07:06 From  s5aimer  to  Everyone:
+	what is the structure of a docker-compose.yml file
+15:07:59 From  s5btan | Jaq  to  Everyone:
+	Reacted to "can you explain the ..." with 👍🏾
+15:21:12 From  s5Marco  to  Everyone:
+	How do you see yourself in the next 3 years?
+15:24:14 From  s5ndeye  to  Everyone:
+	how do you manage usually your timeline for project you have Already done?
+15:24:53 From  s5ndeye  to  Everyone:
+	is that any time  you work for a project in a short time ?  how susccesfully was it ?
+15:25:02 From  s5annie  to  Everyone:
+	can you name some limitations of docker-compose you've encounter during your projects
+15:25:30 From  s5aimer  to  Everyone:
+	what time frame did you used to deployed the Odilia application
+15:28:03 From  s5rolande  to  Everyone:
+	How to check Docker logs and where it get stored?
+15:29:18 From  s5annie  to  Everyone:
+	How do you handle updates and rollbacks in a Docker Compose environment?
+15:30:11 From  s5aimer  to  Everyone:
+	what time frame did you used to deployed the Odilia application
+15:30:38 From  s5amy  to  Everyone:
+	What are the security considerations when deploying microservices-based application with Docker Compose?
+15:30:42 From  esso  to  Everyone:
+	WHAT IS THE DIFFERENCE BETWEEN DOCKER-COMPOSE AND KUBERNETES?
+15:30:45 From  s5sam  to  Everyone:
+	Replying to "what time frame did ..."
+	
+	2 MONTHS
+15:31:13 From  s5amy  to  Everyone:
+	How can microservices deployed with Docker Compose be effectively monitored and managed to ensure optimal application performance?
+15:31:21 From  Devops Easy Learning  to  Everyone:
+	We have to stop

@@ -1,0 +1,22 @@
+                              FILE PERMISSION
+1/explain this output drwxr r-x x-r
+2/explain the meaning of x , r ,w
+3/create devopsdir/ testpermission.txt
+4/create 2users of your choice
+5/create a group of your choice 
+6/add the 2user you created to devops group
+7change the ownership for the directory devopsdir as this:
+ user =user1 , group ownership devops
+8/for the devopsdir change permission as this:
+    for other remove execute and read permissions 
+9/add write permission for the others for the directory devopsdir
+10/explain this command chmod 640 folder
+11/create a directory webdata
+12/change ownership as follow
+user= user2 ,group=devops
+13/change permissions as follow for webdata :
+   give full permission for user ,group then no permission for others using numerique method
+14/change now as this :for the webdata
+    give full permission for user 
+   read and write permission for group
+   no permission for others

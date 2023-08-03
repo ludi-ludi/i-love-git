@@ -1,0 +1,10 @@
+
+    CONTINUOUS INTEGRATION, DELIVERY AND DEPLOYMENT
+
+
+Continuous Integration (CI) is the process of frequently building, merging and testing codes from developers into a shared repository. 
+
+Continuous Deployment (CD) is a process of automatically deployed codes changes to production after they have passed the build and test stages.
+
+
+Continuous Delivery (CD) is like continuous deployment, but with an additional step of manual approval before deploying to production. after passing the build and test stages, code changes are released to the production environment after a manual approval process. 

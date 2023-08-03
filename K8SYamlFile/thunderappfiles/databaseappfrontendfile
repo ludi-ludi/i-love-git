@@ -1,0 +1,131 @@
+
+
+
+
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mongodb-lud
+  labels:
+    app: mongodb
+    apps: dbapp
+spec:
+  serviceName: mongodb-servicelud
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mongodb
+      apps: dbapp
+  template:
+    metadata:
+      labels:
+        app: mongodb
+        apps: dbapp
+    spec:
+      containers:
+        - name: mongodb
+          image: mongo
+          ports:
+            - containerPort: 27017
+          env:
+            - name: MONGO_INITDB_ROOT_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: mongodb-secretlud
+                  key: mongo-root-username
+            - name: MONGO_INITDB_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mongodb-secretlud
+                  key: mongo-root-password  
+          
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongodb-servicelud
+spec:
+  selector:
+    app: mongodb
+    apps: dbapp
+  ports:
+    - protocol: TCP
+      port: 27017
+      targetPort: 27017
+
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mongodb-secretlud
+type: Opaque
+data:
+  mongo-root-username: ZnJpdHo=
+  mongo-root-password: ZGFtaWVu
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-servicelud
+spec:
+  selector:
+    app: frontend
+    apps: dbapp
+  ports:
+    - protocol: TCP
+      port: 8081
+      targetPort: 8081
+  type: NodePort
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongo-frontendlud
+  labels:
+    app: frontend
+    apps: dbapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+      apps: dbapp
+  template:
+    metadata:
+      labels:
+        app: frontend
+        apps: dbapp
+    spec:
+      containers:
+        - name: frontend-containerlud
+          image: fridade/fritz:dbfront_end
+          ports:
+            - containerPort: 8081
+          env:
+            - name: ME_CONFIG_MONGODB_ADMINUSERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: mongodb-secretlud
+                  key: mongo-root-username
+            - name: ME_CONFIG_MONGODB_ADMINPASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mongodb-secretlud
+                  key: mongo-root-password 
+            - name: ME_CONFIG_MONGODB_SERVER
+              valueFrom:
+                configMapKeyRef:
+                  name: mongodb-configlud
+                  key: database_url 
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mongodb-configlud
+data:
+  database_url: mongodb-servicelud 
+    

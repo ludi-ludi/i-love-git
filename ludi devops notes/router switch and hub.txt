@@ -1,0 +1,9 @@
+router switch and hub
+
+router: is a network device used to enable network capabilities. It is also used to connect multiples devices togheter and allows them to use the same internet connection and create Local Area Network.
+
+Switch: is used to connect multiple devices togheter and it is intelligent. intelligent because when he received data packet it direct it to the appropriate port (device).
+
+hub: is used to connect multiple devices togheter and it is not intelligent. it is not intelligent because when he received data packet it direct it to all connected  devices. (no more used nowaday ==> network congestion)
+ 
+Data packets are small units of information that are used to transfer data across computer networks. When you send or receive information over a network, such as browsing a website or sending an email, the data is divided into smaller chunks called packets.

@@ -1,0 +1,10 @@
+ingress
+
+ingress help users access aplication with multiples services through a single URL. At the same time, ingress implement SSL 'secure Sockets Layer' security.
+SSL establishes a secure and encrypted connection between  a server and a client over internet.
+
+Ingress is a set of rules defined within the Ingress Resource. It specifies how incoming requests should be routed to different services based on the requested host or path.
+
+ingress controller act like a reverse proxy and redirect the traffic to the backend 'appropriate service. it is inspired by the ingress resources.
+
+Ingress Resource: is a Kubernetes resource object that defines the ingress, set of instructions give to the controller telling him how to distribute the traffic to service within the cluster.  
