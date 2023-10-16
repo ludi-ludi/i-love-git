@@ -1,0 +1,7 @@
+High Availability refers to the ability of a system to remain operational and accessible without experiencing downtime or disruptions. 
+
+Autoscaling is a process used to dynamically adjust the number of computing resources. (virtual machines, containers, pods...) 
+
+A Load Balancer is a networking component that distributes incoming network traffic across multiple servers or resources.The primary objective of load balancing is  to ensure that each server receives a fair share of requests.
+
+Peak Time, also known as Rush Hour or High Traffic Period, refers to the specific hours or periods during a day when an application or website experiences significantly higher user activity or traffic. 

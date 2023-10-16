@@ -1,0 +1,3 @@
+1/ how do you do togive sudo privilegies to a user?
+2/create 3user   with their password then give sudo  privilegies to  user1 by edditing the sudoers file 
+3/create a group call devops then add user 1&2 to devops group then give the sudo privilegies to the group by using the /etc/sudoers./d
