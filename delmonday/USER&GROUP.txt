@@ -1,0 +1,22 @@
+               GROUP &USER IN LINUX
+1/what the importance of group and user i n linux
+2/how many type of user do we have on linux and with their home directory and their login shell
+3/use the head command to output just the 1st line of the /etc/passwd
+the  output is a line with tha has 7columns  separated with colons explain each of those columns
+4/explain this command cat  /etc/group |grep devops ,also explain the output
+5/create 2 user with the name of your choice and password for each of those,
+what is purpose of shadow file ,then check if those user really has password created
+5a/your manager assigned you user1 you created should not still have access(two way of doing this)
+5b/after a time the same manager decide to give him back access(2 way of doing this) 
+5c/now check if you unlock him
+5d/so the user2 you created is a female and she get masrried then came and ask you to change her username (with a new username of your choice)
+5e/add more information for user3 (full name,room,workphone)
+6/what the command to switch within those user
+7/create home directory to those user
+8/give the wrigth permission to those home directory
+10/create a group with a name of your choice,then add those user you created in the group
+11/which command to find info about a specific user (two way to do it)
+12/explain the command last ,who
+13/explain lsof -u username
+14/delete all the user you created with their home directory 
+15/delete the group you created

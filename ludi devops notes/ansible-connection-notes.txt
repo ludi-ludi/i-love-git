@@ -1,0 +1,45 @@
+establish a connection between an ansible master VM server2 and 2EC2 launched from AWS USING AMI (ami-0e40d7e1c5b287d72)
+
+- Login into server2
+- create a user ansible
+useradd ansible -m -d /home/ansible -s /bin/bash
+- switch to user ansible
+su - ansible
+- create your ansible configuration file and inventorry file
+vim ansible.cfg inventory.yaml
+-ls -la
+
+after checking all the files and directories for the user ansible you noticed that the directory .ssh is not present that means that the user ansible doesnt have the key to connect. The two conditions for ansible to connect to the slaves is to have the same key and the username.
+
+I login into one of my EC2 thats has been created 
+with an AMI image (already contain a key and a username) and need to find a way to share that key (ssh) with the ansible master server2.
+- switch to user ansible becoz already in the AMI
+sudo su - ansible
+- ls -la .ssh is present ===> key presen
+- way to share that key with VM ansible master
+. git clone any directory (S6-dOCKERFILE-PROJECT) from git hub,
+. mv .ssh into the new directory that have been clone
+mv .ssh/ S6-Dockerfile-project/
+. cd s6-Dockerfile-project/ ls -la (.ssh present) git add -A git commit git push to send the directory to github
+
+- now that i have a directory with the key on my VM (ansible master) I will git clone that directory 
+
+. cd ~ ;
+. git clone -b eric https://github.com/devopseasylearning/S6-Dockerfile-project.git
+. cp -r S6-Dockerfile-project/.ssh .
+the user ansible now has the key
+
+- chmod 400 ~/.ssh/id_rsa
+
+- ansible all -m ping (to ping all the servers in the inventory file)
+
+===> SET ALIASES 
+When you set aliases ansible refer to the host not by the ip address but by their aliases
+server01 ansible_host=44.202.0.33      
+server02 ansible_host=54.211.197.25  
+===>IN ANSIBLE WE CAN ALSO WORK ON SPECIFIC GROUPS OF HOSTS.
+ 
+===> ansible ad-hoc passing a command through a CLI
+ansible all -m command -a "mkdir /home/ansible/lulu"
+
+ansible all -m file -a "path=/home/ansible/[ENTER YOUR PREFER NAME]  state=directory mode=0755"

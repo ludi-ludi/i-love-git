@@ -1,0 +1,16 @@
+1/explain the purpose of env variable
+2/your task by your boss to set  env variable of database password and username in the server system
+as password=devops,username=admin
+3/remove the env variable you just set
+4/env will list all the env variable but but your task to give env the way only you will have the line about DB_password
+5/what the purpose of /etc/passwd file
+6/give the first 10line of /etc/passwd
+7/also the last 10 line
+8/count the number of line in the etc/passwd file
+9/count the number of line in the number line in the etc/passwd that has bash
+10/count of user currently log in the server
+11/your is asking to check if the empolye s5damien currently at work
+12/your boss needs this series of information in a one file(redirect & append)
+   kernel version,architecture of the system,number of cpu,
+13/use echo command to create and write simultanously i love devops inside the test.txt file
+14 /then count thr number of line,word and caracter of test.txt

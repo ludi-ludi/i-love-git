@@ -1,0 +1,12 @@
+command to wrap a test in vscode in one windows
+alt + z in windows
+command + z in mac
+
+
+command to comment aline or a block of line
+ctrl + /
+
+convert lowercase in uppercase in vscode
+select the word or sentence click on it and choose command pallete option 
+then it will open search bar write upper
+and select transform to uppercase
